@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test</title>
+    <link rel="stylesheet" href="gh.css">
+</head>
+<body>
+<div style="position:relative; width: 350px; align: right; "  id ="clockdate">
+    <div id="wrapper-clockdate">
+        <div id="clock-large"></div>
+    </div>
+</div>
+<img style="position: relative; width:300px; height: 250px; top: 100px; left: 70%;"src="https://i.ytimg.com/vi/2MB1bKjOCug/maxresdefault.jpg">
+<h1 onclick="change()" id="h1" style="position:relative;">...........</h1>
+<button onclick="change1()" id="b">Не трож</button>
+<!--голубой-->
+<div style="position: relative; left: 500px;"class="page">
+    <button class="button" onclick="changeColor();">Click</button>
+</div>
+<div style="position: relative;height: 500px; width:500px;top:-800px; "class="slider">
+
+    <!-- Первый слайд -->
+    <div class="item">
+ <img src="https://cdn.discordapp.com/attachments/772164370406965271/846438647640621076/image0.png">
+    </div>
+
+    <!-- Второй слайд -->
+    <div class="item">
+        <img src="https://media.discordapp.net/attachments/772164370406965271/846439064579211274/image0.png?width=627&height=670">
+    </div>
+
+    <!-- Третий слайд -->
+    <div class="item">
+        <img src="https://media.discordapp.net/attachments/772164370406965271/846444644362485810/image0.png?width=783&height=670">
+    </div>
+
+    <!-- Кнопки-стрелочки -->
+    <a class="previous" onclick="previousSlide()">&#10094;</a>
+    <a class="next" onclick="nextSlide()">&#10095;</a>
+</div>
+<button onclick="dds" id="z">Не нажимай</button>
+<iframe style="position: relative;"width="900" height="506" src="https://www.youtube.com/embed/EoFNYxopbsk" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<div id="dv" style="position: relative;right: 0px; top: -1400px;background-color:#82f582; border:3px #0a0a0a  solid;height:225px;width: 200px;"><p><h5 style="position: relative; text-align: center; top: 180px;">бычки по акции</h5> </p><a href="https://yandex.by/maps/org/mpk_bychkov/69118602930/?ll=32.102236%2C54.720763&z=17"><img id="dv1" style="position: relative; top: -60px;height:200px; width:200px;"id="image_id" src="https://wosoft.ru/nwsimg/aHR0cHM6Ly9oaS1uZXdzLnJ1L3dwLWNvbnRlbnQvdXBsb2Fkcy8yMDIwLzAyL2NpZ2FyZXR0ZV9idXR0X2ltYWdlX3R3by5qcGc=" /></a></div>
+<style>
+body{
+    background: url(https://im0-tub-ru.yandex.net/i?id=c5629119638b658b3702c8ffdf15f518&ref=rim&n=33&w=300&h=188); /* Фоновый цвет и фоновый рисунок*/
+    background-attachment: fixed; /* Фон страницы фиксируется */
+    background-repeat: no-repeat; /* Изображение повторяется по горизонтали */
+    background-size: cover; /* Масштабируем фон */
+}
+#clockdate{
+
+    margin: auto;
+
+    background : #ee3030;
+    cursor: default;
+    border-radius : 15px;
+}
+
+#wrapper-clockdate{
+    padding: 5px;
+    text-align: center;
+    margin-top: 5%;
+    border-radius: 15px;
+}
+
+#clock-large{
+    font-family: 'arial', sans-serif;
+    font-size: 50px;
+    color: #d9a8a8;
+    text-align:right ;
+}
+
+#clock-large span{
+
+    color: #d35ff5;
+    font-size: 15px;
+    position: relative;
+    top: -10px;
+    left: -5px;
+
+}
+
+
+#h1 {
+    color: white;
+}
+.page {
+    width: 100%;
+    height: 700px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.button {
+    background: transparent;
+    border: 1px solid #000;
+
+    font-family: 'Montserrat', sans-serif;
+
+    color: #000;
+    font-weight: 900;
+
+    text-transform: uppercase;
+
+    padding: 1rem 3rem;
+    margin: 0 auto;
+}
+
+.button:hover {
+    background: #000;
+    color: #fff;
+}
+
+.button,
+.button:active,
+.button:focus {
+    outline: none;
+}
+/*Затемнение дисплея*/
+.overlay {
+    background-color: rgba(1, 0, 0, 0.77);
+    right: 0;
+    left: 0;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    z-index: 11;
+    display: none;
+}
+/*Слой становится видимым*/
+.overlay:target {
+    display: block;
+}
+/*Растягиваю картинку на всю ширину попапа*/
+.window img {
+    width: 100%;
+}
+/*Характеристики самого окна, которое появляется после клика на кнопке*/
+.window {
+    left: 50%;
+    z-index: 12;
+    margin: 0;
+    position: fixed;
+    padding: 15px;
+    border: 1px solid #383738;
+    background: #fefeff;
+    border-radius: 15px;
+    box-shadow: 0 13px 21px rgba(0,1,0,.19),0 21px 63px rgba(0,1,0,.31);
+    transform: translate(-50%, -450%);
+    transition: transform 0.6s ease-out;
+}
+/*Появление модального окошка с верхнего края экрана*/
+.overlay:target+.window {
+    transform: translate(-50%, 0);
+    top: 17%;
+}
+/*Внешний вид кнопки «Закрыть»*/
+.close {
+    top: -11px;
+    right: -11px;
+    width: 23px;
+    height: 23px;
+    position: absolute;
+    padding: 0;
+    border: 2px solid #ccd;
+    border-radius: 15px;
+    background-color: rgba(61, 61, 61, 0.81);
+    box-shadow: 0 0 12px #010;
+    text-align: center;
+    text-decoration: none;
+    font: 18px sans-serif;
+    font-weight: bold;
+    transition: all ease .9s;
+}
+.close:before {
+    color: rgba(254, 254, 254, 0.89);
+    content: "X";
+    text-shadow: 0 1px 3px #010;
+    font-size: 14px;
+}
+/*Изменение характеристик при наведении на область */
+.close:hover {
+    background-color: rgba(253, 21, 0, 0.83);
+    transform: rotate(360deg);
+}
+/*Оформление главной кнопки*/
+#button {
+    margin-left: 40%;
+    font-size: 33px;
+    border-radius: 11px;
+    background-color: rgba(63, 63, 63, 0.9);
+    box-shadow: 0 3px 10px #010;
+    text-align: center;
+    text-decoration: none;
+    background: #DCDCDC;
+    padding: 6px 17px;
+}
+.slider{
+    max-width: 90%;
+    /* Положение элемента устанавливается относительно его исходной позиции: */
+    position: relative;
+    /* Центрируем по горизонтали: */
+    margin: auto;
+    height: 300px;
+}
+
+/* Картинка масштабируется по отношению к родительскому элементу: */
+.slider .item img {
+    /* Элемент меняет размер так, чтобы заполнить блок и сохранить пропорции: */
+    object-fit: cover;
+    width: 100%;
+    height: 300px;
+}
+
+/* Кнопки назад и вперёд: */
+.slider .previous, .slider .next {
+    /* Добавляет курсору иконку, когда тот оказывается над кнопкой: */
+    cursor: pointer;
+    /* Положение элемента задаётся относительно границ браузера: */
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    /* Оформление самих кнопок: */
+    color: white;
+    font-weight: bold;
+    font-size: 16px;
+    /* Плавное появление фона при наведении курсора: */
+    transition: 0.6s ease;
+    /* Скругление границ: */
+    border-radius: 0 3px 3px 0;
+}
+.slider .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+/* При наведении курсора на кнопки добавляем фон кнопок: */
+.slider .previous:hover,
+.slider .next:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Анимация слайдов: */
+.slider .item {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+#dv {
+    border-radius: 25%;
+}
+#dv1 {
+    border-radius: 25%;
+}
+</style>
+<script>
+function  showTime(){
+    var a_p = "";
+    var  today = new Date();
+
+    var current_hour =  today.getHours();
+    var current_minute = today.getMinutes();
+    var current_second = today.getSeconds();
+
+    if( current_hour < 12 ){
+        a_p = "<span> AM </span>"
+    }else{
+
+        a_p = "<span>PM</span>"
+    }
+
+    if(current_hour == 0){
+
+        current_hour = 12;
+    }
+
+    if(current_hour > 12){
+
+        current_hour = current_hour - 12;
+    }
+    current_hour =  checkTime(current_hour);
+    current_minute = checkTime(current_minute);
+    current_second =   checkTime(current_second)
+    document.getElementById('clock-large').innerHTML = current_hour + " : " + current_minute + " : " + current_second + "  " + a_p;
+    function  checkTime(i){
+        if(i < 10){
+            i = "0" + i;
+        }
+        return i;
+    }
+}
+
+setInterval(showTime);
+
+function change(){
+    document.getElementById("h1").innerHTML = "Аташол"
+}
+function change1(){
+    document.getElementById("b").innerHTML = "Я сказал не трож"
+}
+var colorArray = ["#0DC2FF", "#007DE8", "#0E5DFF", "#0C28EB", "#1600FF"];
+var i = 0;
+
+function changeColor(){
+    document.body.style.background = colorArray[i];
+    i++;
+    if( i >= colorArray.length) {
+        i = 0;
+    }
+}
+let slideIndex = 1;
+/* Вызываем функцию, которая реализована ниже: */
+showSlides(slideIndex);
+
+/* Увеличиваем индекс на 1 — показываем следующий слайд: */
+function nextSlide() {
+    showSlides(slideIndex += 1);
+}
+
+/* Уменьшаем индекс на 1 — показываем предыдущий слайд: */
+function previousSlide() {
+    showSlides(slideIndex -= 1);
+}
+
+/* Устанавливаем текущий слайд: */
+function currentSlide(n) {
+    showSlides(slideIndex = n);
+}
+
+/* Функция перелистывания: */
+function showSlides(n) {
+    /* Обращаемся к элементам с названием класса "item", то есть к картинкам: */
+    let slides = document.getElementsByClassName("item");
+
+    /* Проверяем количество слайдов: */
+    if (n > slides.length) {
+        slideIndex = 1
+    }
+    if (n < 1) {
+        slideIndex = slides.length
+    }
+
+    /* Проходим по каждому слайду в цикле for: */
+    for (let slide of slides) {
+        slide.style.display = "none";
+    }
+    /* Делаем элемент блочным: */
+    slides[slideIndex - 1].style.display = "block";
+}
+function dds() {
+    if (document.getElementById('z').onclick) {
+        for(;;){
+            alert("дедос атака");
+        }
+
+    }
+}
+//смена картинок
+var images  = ['https://cdn.pixabay.com/photo/2017/01/22/15/07/ashtray-1999943_960_720.jpg', 'https://vesti-ua.net/uploads/posts/2019-12/1577445564_12.jpg', 'https://im0-tub-ru.yandex.net/i?id=ac90ed24fcf896f7bcdd58ecf05b1d39&ref=rim&n=33&w=272&h=188'],
+length  = images.length,
+index   = 1;
+
+setInterval(function() {
+    if(index == length) index = 0;
+    document.getElementById('image_id').src = images[index++];
+}, 2000);
+</script>
+</body>
+</html>
